@@ -1,0 +1,12 @@
+{{- $type := .Get 0 -}}
+{{- $title := .Get 1 | default $type -}}
+{{- $inner := .Inner | .Page.RenderString | chomp -}}
+{{- $icon := dict "note" "📝" "tip" "💡" "example" "📜" "question" "❓" "info" "ℹ️" "warning" "⚠️" "error" "❌" -}}
+<div class="notice {{ $type }}">
+  <div class="notice-title">
+    {{ index $icon $type }} {{ $title }}
+  </div>
+  <div class="notice-content">
+    {{- $inner -}}
+  </div>
+</div>
