@@ -1,10 +1,11 @@
 {{- $type := .Get 0 -}}
 {{- $title := .Get 1 | default $type -}}
 {{- $inner := .Inner | .Page.RenderString | chomp -}}
-{{- $icon := dict "note" "📝" "tip" "💡" "example" "📜" "question" "❓" "info" "ℹ️" "warning" "⚠️" "error" "❌" -}}
+{{- $icon := dict "note" (emojify ":memo:") "tip" (emojify ":light_bulb:") "example" (emojify ":scroll:") "question" (emojify ":red_question_mark:") "info" (emojify ":information:") "warning" (emojify ":warning:") "error" (emojify ":cross_mark:") -}}
 <div class="notice {{ $type }}">
   <div class="notice-title">
-    {{ index $icon $type }} {{ $title }}
+    <span>{{- index $icon $type -}}</span>
+    {{ $title -}}
   </div>
   <div class="notice-content">
     {{- $inner -}}
